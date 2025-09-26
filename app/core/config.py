@@ -8,7 +8,8 @@ class Settings(BaseSettings):
 
     # ===== SECURITY =====
     SECRET_KEY: str
-    ACCESS_TOKEN_EXPIRE_MINUTES: int
+    JWT_EXPIRATION_MINUTES: int
+    ALGORITHM: str
 
     # ===== DATABASE =====
     MONGODB_URL: str
@@ -18,7 +19,7 @@ class Settings(BaseSettings):
     CORS: str
 
     class Config:
-        env_file = "../../.env"
+        env_file = "../../.env
 
 # Instância global das configurações
 settings = Settings()
@@ -28,8 +29,8 @@ def print_startup_info():
     print(f"🏰 {settings.PROJECT_NAME} v{settings.VERSION}")
     print("=" * 50)
     print(f"🗄️ Database: {settings.DATABASE_NAME}")
-    print(f"🌐 CORS : {len(settings.CORS)} configurado")
-    print(f"🔐 JWT expira em: {settings.ACCESS_TOKEN_EXPIRE_MINUTES} minutos")
+    print(f"🌐 CORS : {settings.CORS} configurado")
+    print(f"🔐 JWT expira em: {settings.JWT_EXPIRATION_MINUTES} minutos")
     print("=" * 50)
 
 print_startup_info()
