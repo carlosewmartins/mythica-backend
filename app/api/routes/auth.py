@@ -6,7 +6,7 @@ from app.schemas.user import CreateUser, ReturnData, Token
 from app.services import auth as auth_service
 from app.db.database import users_list
 
-router = APIRouter(prefix="/api/auth", tags=["Auth"])
+router = APIRouter(prefix="/auth", tags=["Auth"])
 
 @router.post("/signup", response_model=ReturnData, status_code=status.HTTP_201_CREATED)
 def signup(payload: CreateUser):
@@ -28,5 +28,5 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
     return {"access_token": token, "token_type": "bearer"}
 
 @router.get("/profile", response_model=ReturnData)
-def me(current_user = Depends(auth_service.get_current_user)):
+def profile(current_user = Depends(auth_service.get_current_user)):
     return current_user
