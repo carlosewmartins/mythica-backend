@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     CORS: str
 
     class Config:
-        env_file = "../../.env
+        env_file = ".env"
 
 # Instância global das configurações
 settings = Settings()
