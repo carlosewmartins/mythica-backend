@@ -27,6 +27,6 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
     token = auth_service.create_access_token(subject=str(user["_id"]))
     return {"access_token": token, "token_type": "bearer"}
 
-@router.get("/profile", response_model=ReturnData)
-def profile(current_user = Depends(auth_service.get_current_user)):
+@router.get("/me", response_model=ReturnData)
+def me(current_user = Depends(auth_service.get_current_user)):
     return current_user
