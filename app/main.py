@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.routes import auth, personagem, campanha
+from app.api.routes import auth, personagem, campanha, historico
 from app.core.config import settings
 
 app = FastAPI(
@@ -10,3 +10,4 @@ app = FastAPI(
 app.include_router(auth.router, prefix="/api")
 app.include_router(personagem.router, prefix="/api")
 app.include_router(campanha.router, prefix="/api")
+app.include_router(historico.router, prefix="/api")
