@@ -15,7 +15,7 @@ def criar_campanha(payload: CreateCampanha, current_user: dict = Depends(get_cur
 
 @router.get("", response_model=List[CampanhaResponse])
 def listar_campanhas(current_user: dict = Depends(get_current_user)):
-    return campanha_service.listar_campanhas(current_user["id"], status)
+    return campanha_service.listar_campanhas(current_user["id"])
 
 
 @router.get("/{campanha_id}", response_model=CampanhaResponse)
