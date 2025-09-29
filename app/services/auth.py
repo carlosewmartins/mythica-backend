@@ -3,7 +3,7 @@ import jwt
 from jwt import ExpiredSignatureError, InvalidTokenError
 from passlib.context import CryptContext
 from bson import ObjectId
-from fastapi import HTTPException, status
+from fastapi import HTTPException, status, Depends
 from fastapi.security import OAuth2PasswordBearer
 
 from app.core.config import settings
@@ -52,7 +52,7 @@ def decode_access_token(token: str):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token inválido", headers={"WWW-Authenticate": "Bearer"})
 
 # Valida token e usuario para proteção de rotas
-def get_current_user(token: str):
+def get_current_user(token: str = Depends(oauth2_scheme)):
     payload = decode_access_token(token)
     user_id = payload.get("sub")
     if not user_id:
