@@ -1,3 +1,6 @@
+from typing import List
+
+from pydantic import Field
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
@@ -16,7 +19,7 @@ class Settings(BaseSettings):
     DATABASE_NAME: str
 
     # ===== CORS =====
-    CORS: str
+    CORS: List[str] = Field(default_factory=list)
 
     class Config:
         env_file = ".env"
