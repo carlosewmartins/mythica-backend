@@ -1,6 +1,3 @@
-from typing import List
-
-from pydantic import Field
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
@@ -19,7 +16,14 @@ class Settings(BaseSettings):
     DATABASE_NAME: str
 
     # ===== CORS =====
-    CORS: List[str] = Field(default_factory=list)
+    CORS: str
+
+    # ===== LLM (OPENAI) =====
+    OPENAI_API_KEY: str
+    OPENAI_BASE_URL: str
+    OPENAI_MODEL: str
+    LLM_MAX_TOKENS: int
+    LLM_TEMPERATURE: float
 
     class Config:
         env_file = ".env"
@@ -34,6 +38,7 @@ def print_startup_info():
     print(f"🗄️ Database: {settings.DATABASE_NAME}")
     print(f"🌐 CORS : {settings.CORS} configurado")
     print(f"🔐 JWT expira em: {settings.JWT_EXPIRATION_MINUTES} minutos")
+    print(f"🤖 LLM Model: {settings.OPENAI_MODEL}")
     print("=" * 50)
 
 print_startup_info()
