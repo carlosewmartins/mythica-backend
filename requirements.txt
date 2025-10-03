@@ -18,3 +18,7 @@ pydantic-settings==2.11.0
 
 # Utilitarios
 python-multipart==0.0.20
+httpx==0.28.1
+
+# LLM
+openai==2.1.0
