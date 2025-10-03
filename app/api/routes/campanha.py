@@ -1,5 +1,4 @@
 from fastapi import APIRouter, status, Depends
-from typing import Optional
 
 from app.schemas.campanha import *
 from app.services import campanha as campanha_service
@@ -24,13 +23,8 @@ def buscar_campanha(campanha_id: str, current_user: dict = Depends(get_current_u
 
 
 @router.post("/{campanha_id}/acao", response_model=CampanhaResponse)
-def enviar_acao(campanha_id: str, payload: AcaoJogador, current_user: dict = Depends(get_current_user)):
-    """
-    Envia uma ação do jogador na campanha
-    A campanha processa a ação e retorna a resposta atualizada
-    Atualmente retorna resposta mock. Integração com LLM será implementada em breve
-    """
-    return campanha_service.processar_acao_campanha(campanha_id, payload, current_user["id"])
+async def enviar_acao(campanha_id: str, payload: AcaoJogador, current_user: dict = Depends(get_current_user)):
+    return await campanha_service.processar_acao_campanha(campanha_id, payload, current_user["id"])
 
 @router.delete("/{campanha_id}", status_code=status.HTTP_204_NO_CONTENT)
 def deletar_campanha(campanha_id: str, current_user: dict = Depends(get_current_user)):
