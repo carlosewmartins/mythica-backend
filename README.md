@@ -45,8 +45,8 @@ Siga os passos abaixo para configurar e rodar o projeto em seu ambiente local.
 
 1.  **Clone o repositório:**
     ```bash
-    git clone <URL_DO_REPOSITORIO>
-    cd <PASTA_DO_PROJETO_BACKEND>
+    git clone https://github.com/carlosewmartins/mythica-backend
+    cd mythica-backend
     ```
 
 2.  **Crie e ative um ambiente virtual:**
